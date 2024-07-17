@@ -13,13 +13,31 @@ pour créer les champs(colonnes) , puis repondre à la question par le nom que v
 5- Cmde: symfony console make:entity User
 
 Pour préparer le fichier de migration et ensuite la commande ci-dessous
-6- symfony console make:migration 
+6- symfony console make:migration
+
+Pour exécuter la migration et tout migrer vers la BDD
+7- Cmde: symfony console doctrine:migrations:migrate
+
+Dans config->packages->Security.yaml décommenter la ligne ci-dessous dans access_controller
+ - { path: ^/admin, roles: ROLE_ADMIN } 
+
+Pour créer un nouveau controller pour sécuriser notre application
+8- symfony console make:controller SecurityController
+
+Pour créer un formulaire
+9- Cmde: symfony console make:form , puis tapez: UserType, puis: User
 
 
 
 
-
+******************  Git et Github  *****************
 Ne jamais faire git ini avec symfony.
-Créer votre repository, puis la branche dev . Déplacez-vous ensuite sur cette branche avec la commande
+Créer votre repository
+Faire le link entre le git et le github en étend sur la branch (master ou main)
+git remote add origin https://github.com/Aissatou2626/sf_e_commerce.git
+
+Puis la branche dev . Déplacez-vous ensuite sur cette branche avec la commande
 git branch dev
 git checkout dev
+git add .
+git commit -m 'feat(User): add Création de la BDD et de latable User'

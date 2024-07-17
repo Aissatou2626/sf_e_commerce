@@ -2,9 +2,10 @@
 
 namespace App\Controller\Backend;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/users', name: 'admin.users')]
 class UserController extends AbstractController
@@ -14,7 +15,7 @@ class UserController extends AbstractController
     public function index(UserRepository $repo): Response
     {
         return $this->render('Backend/user/index.html.twig', [
-            'users' =>$repo->findAll(),
+            'users' => $repo->findAll(),
         ]);
     }
 }
