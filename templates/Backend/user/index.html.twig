@@ -7,14 +7,14 @@
 
 {% block body %}
 	<section class="container mt-2">
-		<h1 class="text-center">Administration des users</h1>
+		<h1 class="text-center">Administration des utilisateurs</h1>
 		<a href="{{ path('app.register') }}" class="btn btn-primary">Créer un utilisateur</a>
 		<div class="row mt-2 gy-4">
 			{% for user in users %}
 				<div class="col-md-4">
 					<div class="card">
 						<h4>
-							{{ user.fullName }}
+							{{ user.firstName }} {{ user.lastName }}
 						</h4>
 
 						<p>
@@ -31,7 +31,7 @@
 
 						<div class="card-btn">
 							<a href="{{ path('admin.users.update', {id:user.id}) }}" class="btn btn-warning">Modifier</a>
-							{# {% include 'backend/User/_delete.html.twig' %} #}
+							{% include 'Backend/user/_delete.html.twig' %} 
 						</div>
 					</div>
 				</div>

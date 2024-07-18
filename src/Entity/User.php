@@ -2,14 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
+#[UniqueEntity(fields: ['email'], message: 'Cet email a déja été utilisé par un unautre compte !')]
+#[ORM\HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -17,7 +21,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 180,
+        maxMessage: 'L\'email ne doit pas dépasser {{ limit }} caractères',
+    )]
+    #[Assert\Email]
     private ?string $email = null;
 
     /**
@@ -33,12 +43,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    // Rajouter l'allias(Assert) sur toutes les contraintes 
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    // Rajouter l'allias(Assert) sur toutes les contraintes 
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 255)]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 10, nullable: true)]
+    #[Assert\Regex(
+        pattern: '/^(?:(?:+|00)33[\s.-]?[67]|0[\s.-]?[67])(?:[\s.-]*\d{2}){4}$/',
+    )]
     private ?string $telephone = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
