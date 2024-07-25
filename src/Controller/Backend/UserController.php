@@ -14,7 +14,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/users', name: 'admin.users')]
 class UserController extends AbstractController
-{
+{   
+    //Je l'importe ici parce que j'ai besoin de l'utiliser dans plusieur methodes
     public function __construct(
         private EntityManagerInterface $em,
     ){
