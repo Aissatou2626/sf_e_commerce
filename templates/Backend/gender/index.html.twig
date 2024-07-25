@@ -1,13 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Gestion du type d'utilisateur
+	Gestion du genre d'utilisateur
 {% endblock %}
 
 {% block body %}
 
 	<section class="container mt-2">
-		<h1 class="text-center">Gestion du type d'utilisateur</h1>
+		<h1 class="text-center">Gestion du genre d'utilisateur</h1>
+
+		<table class="container mt-4">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Nom</th>
+			<th>Actif</th>
+		</tr>
+		</thead>
+		<tbody>
+			{% for gender in genders %}
+			<tr>
+				<td>{{ gender.id }}</td>
+				<td>{{ gender.name }}</td>
+				<td>{{ gender.enable ? 'Actif' : 'Inactif' }}</td>
+				<td>
+					<div class="cell-flex">
+						<a href="{{ path('admin.gender.update', {id: gender.id}) }}">Modifier</a>
+						{% include "Backend/Gender/_form.html.twig" %}
+					</div>
+				</td>
+			</tr>
+				
+			{% endfor %}
+		</tbody>
 		
+		</table>
 	</section>
 {% endblock %}

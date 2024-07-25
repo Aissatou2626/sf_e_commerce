@@ -12,7 +12,10 @@ Pour générer automatiquement la class dans le controller et le twig dans templ
 pour créer les champs(colonnes) , puis repondre à la question par le nom que vous voulez donner à votre champs
 5- Cmde: symfony console make:entity User
 
-Pour préparer le fichier de migration et ensuite la commande ci-dessous
+------------Revoir les constraintes de validation---------------
+Ne pas oublier de faire des traits sur les champs qu'on utilise souvent(Dans le dossier Entity, dans src)
+
+Pour préparer le fichier de migration et ensuite la commande ci-dessous pou exécuter
 6- symfony console make:migration
 
 Pour exécuter la migration et tout migrer vers la BDD
