@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\EnableTrait;
 use App\Repository\GenderRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GenderRepository::class)]
 #[ORM\HasLifecycleCallbacks] 
@@ -19,10 +20,12 @@ class Gender
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le contenu ne  doit pas dépasser {{ limit}} caractères,'
+    )]
     private ?string $name = null;
-
-    #[ORM\Column]
-    private ?bool $enable = null;
 
     public function getId(): ?int
     {

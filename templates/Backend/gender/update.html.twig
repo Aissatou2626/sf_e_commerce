@@ -2,6 +2,7 @@
 
 {% block title %}
     Modifier le genre d'utilisateur
+     {{ parent() }}
 {% endblock %}
 
 {% block body %}
@@ -9,7 +10,7 @@
     {{form_start(form) }}
     {{ form_widget(form) }}
 
-    <button type="submit" class="btn btn-primary">Modifier</button>
+    <button type="submit" class="btn btn-warning">Modifier</button>
 
     {{form_end(form) }}
 {% endblock %}

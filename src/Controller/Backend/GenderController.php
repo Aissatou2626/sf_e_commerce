@@ -13,7 +13,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-#[Route('/admin/gender', name: 'admin.gender')]
+// Je préfixe toutes mes routes :
+#[Route('/admin/Gender', name: 'admin.gender')]
 class GenderController extends AbstractController
 {
     public function __construct(
@@ -37,7 +38,7 @@ class GenderController extends AbstractController
         // Je créee mon formulaire en lui passant l'objet à instancier
         $form = $this->createForm(GenderType::class, $gender);
 
-        // Je lui passe la request pour qu'il puisse récupérerles données
+        // Je lui passe la requête http pour qu'il puisse récupérerles données
         $form->handleRequest($request);
         
         // Si le formulaire est soumis  et valide, on persiste l'objet en BDD
@@ -56,6 +57,7 @@ class GenderController extends AbstractController
 
         }
         return $this->render('Backend/Gender/create.html.twig', [
+            // Ce tableau sert à envoyer des variables à la vue
             'form' => $form
         ]);
     }

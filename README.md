@@ -29,6 +29,7 @@ Pour créer un nouveau controller pour sécuriser notre application
 
 Pour créer un formulaire
 9- Cmde: symfony console make:form , puis tapez: UserType, puis: User
+ou  symfony console make:form NomFormType NomForm
 
 symfony server:stop
 symfony server:start
