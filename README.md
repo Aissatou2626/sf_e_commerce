@@ -35,6 +35,13 @@ symfony server:stop
 symfony server:start
 
 
+Commande non conseillée. Elle permet de forcer la mise à jour de la BDD 
+symfony console doctrine:schema:update --force
+symfony console d:m:sync
+symfony console d:m:v --add --all
+
+
+
 
 
 ******************  Git et Github  *****************
@@ -47,4 +54,4 @@ Puis la branche dev . Déplacez-vous ensuite sur cette branche avec la commande
 git branch dev
 git checkout dev
 git add .
-git commit -m 'feat(User): add Création de la BDD et de latable User'
+git commit -m 'feat(User): add Création de la BDD et de la table User'

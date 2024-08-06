@@ -34,9 +34,9 @@
 						<td>{{ model.updatedAt|date('Y/m/d')}}</td>
 						<td>
 							<div class="cell-flex">
-								<a href="{{ path('admin.model.update', {id: model.id}) }}">Modifier</a>
+								<a href="{{ path('admin.Model.update', {id: model.id}) }}">Modifier</a>
 								{% include "Backend/Components/_delete.html.twig" with {
-									url: path('admin.model.delete', {id: model.id}),
+									url: path('admin.Model.delete', {id: model.id}),
 									message: 'Etes-vous de bien vouloir supprimer ce model ?',
 						    		id:model.id }
 								%}

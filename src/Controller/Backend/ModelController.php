@@ -62,7 +62,7 @@ class ModelController extends AbstractController
         if (!$model) {
             $this->addFlash('error', 'Le model demandé n\'existe pas');
 
-            return $this->redirectToRoute('admin.model.index');
+            return $this->redirectToRoute('admin.Model.index');
         }
         
         // Pour que le formulaire soit pré-rempli, on procède par ces étapes ci-dessous
@@ -75,7 +75,7 @@ class ModelController extends AbstractController
 
             $this->addFlash('Success', 'Le model a bien été modifié');
 
-            return $this->redirectToRoute('admin.model.index');
+            return $this->redirectToRoute('admin.Model.index');
         }
 
         return $this->render('Backend/Model/update.html.twig', [
@@ -87,7 +87,7 @@ class ModelController extends AbstractController
         if (!$model) {
             $this->addFlash('error', 'Le model demandé n\'existe pas.');
 
-            return $this->redirectToRoute('admin.model.index');
+            return $this->redirectToRoute('admin.Model.index');
         }
         if ($this->isCsrfTokenValid('delete'. $model->getId(), $request->request->get('token'))) {
             $this->em->remove($model);
@@ -98,7 +98,7 @@ class ModelController extends AbstractController
         }else {
             $this->addFlash('error', 'Le jeton CSRF est invalide');
         }
-        return $this->redirectToRoute('admin.model.index');
+        return $this->redirectToRoute('admin.Model.index');
     }
 
 }
