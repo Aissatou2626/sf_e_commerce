@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Modification d'une taxe
+     {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Modification d'une taxe</h1>
+    {{form_start(form) }}
+    {{ form_widget(form) }}
+
+    <button type="submit" class="btn btn-warning">Modifier</button>
+
+    {{form_end(form) }}
+{% endblock %}

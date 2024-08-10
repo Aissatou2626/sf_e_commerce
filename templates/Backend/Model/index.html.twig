@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+	Administration des models
+
+{% endblock %}
+
+{% block body %}
+
+	<section class="container mt-2">
+		<h1 class="text-center">Administration des models</h1>
+
+		<table class="container mt-4">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nom</th>
+					<th>Slug</th>
+					<th>Actif</th>
+					<th>Date de création</th>
+					<th>Dernière modification</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for model in models %}
+					<tr>
+						<td>{{ model.id }}</td>
+						<td>{{ model.name }}</td>
+						<td>{{ model.slug }}</td>
+						<td>{{ model.enable ? 'Actif' : 'Inactif' }}</td>
+						<td>{{ model.createdAt|date('Y/m/d')}}</td>
+						<td>{{ model.updatedAt|date('Y/m/d')}}</td>
+						<td>
+							<div class="cell-flex">
+								<a href="{{ path('admin.model.update', {id: model.id}) }}">Modifier</a>
+								{% include "Backend/Components/_delete.html.twig" with {
+									url: path('admin.model.delete', {id: model.id}),
+									message: 'Etes-vous de bien vouloir supprimer ce model ?',
+						    		id:model.id }
+								%}
+
+							</div>
+						</td>
+					</tr>
+
+				{% endfor %}
+			</tbody>
+		</table>
+
+	</section>
+
+
+{% endblock %}
