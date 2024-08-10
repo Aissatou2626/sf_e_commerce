@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Gestion des taxes
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+
+    <h1 class="text-center">Gestion des taxes</h1>
+
+    <a href="{{ path('admin.Taxes.create') }}" class="btn btn-primary">Créer une nouvelle taxe</a>
+    <table class="container mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Taux</th>
+            <th>Enable</th>
+        </tr>
+    </thead>
+
+    <Tbody>
+        {% for taxe in Taxes %}
+        <tr>
+            <td>{{ taxe.id }}</td>
+            <td>{{ taxe.name }}</td>
+            <td>{{ taxe.rate }}</td>
+            <td>{{ taxe.enable ? 'yes' : 'No' }}</td>
+            <td>
+               <div class="cell-flex">
+                    <a href="{{ path( 'admin.Taxes.update', {id: taxe.id} )}}" class="btn btn-warning"> Modifier</a>
+
+                    {% include "Backend/Components/_delete.html.twig" with{
+                        url: path('admin.Taxes.delete', {id: taxe.id}),
+                        message: 'Etes-vous sûr de bien vouloir supprimer cette taxe ?', 
+                        id: taxe.id}
+                    %}
+               </div> 
+            </td>
+        </tr>
+            
+        {% endfor %}
+    </Tbody>
+
+    </table>
+{% endblock %}
